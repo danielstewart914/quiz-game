@@ -87,6 +87,15 @@ header > .button {
     flex-direction: column;
 }
 
+#response-box {
+    height: 4rem;
+}
+
+#score-box {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
 @media screen and (min-width: 480px) {
 
     .timer-container {
@@ -110,6 +119,14 @@ header > .button {
 @media screen and (min-width: 769px) {
     h1 {
         font-size: 3em;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    .answer-button {
+        min-width: 300px;
     }
 
 }
