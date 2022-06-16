@@ -18,7 +18,11 @@
             <span>Time: </span><span id="timer"><span>0</span></span>
         </div>
     </header>
+
+    <!-- main content -->
     <main id="game-container">
+
+        <!-- Welcome screen -->
         <div id="welcome-screen" class="welcome">
             <h2>Welcome to the JavaScript Coding Quiz Game!</h2>
             <p>
@@ -28,12 +32,20 @@
             </p>
             <button id="start-button" class="button">Start Game</button>
         </div>
+
+        <!-- game questions will be displayed here -->
         <div id="question-box"></div>
+
+        <!-- end screen and high score submission for wil be displayed here -->
         <div id="end-screen"></div>
+
+        <!-- correct/wrong will be displayed here -->
         <div id="response-box"></div>
+
+        <!-- score will be displayed here -->
         <div id="score-box"></div>
     </main>
-    
+    <!-- javascript files questions.js must be included before game.js to work -->
     <script src="./assets/js/questions.js"></script>
     <script src="./assets/js/game.js"></script>
 </body>

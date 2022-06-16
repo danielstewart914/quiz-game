@@ -82,14 +82,18 @@ header > .button {
     align-items: center;
 }
 
+/* flash green text on screen when answer is correct */
+
 .correct {
     color: green;
 }
 
+/* flash red text when answer is wrong or when timer is low */
 .wrong, .low {
     color: red;
 }
 
+/* Pulse and fade text for correct, wrong, and low timer */
 .correct, .wrong, .low {
     font-weight: 800;
     animation-name: pulseFade;
@@ -97,6 +101,13 @@ header > .button {
     animation-fill-mode: forwards;
 }
 
+@keyframes pulseFade {
+    0% {font-size: 0; opacity: 1;}
+    25% {font-size: 1.5em;opacity: 1;}
+    100% {font-size: 1.5em; opacity: 0;}
+}
+
+/* pulse animation for end screen while adding timer to score */
 .pulse {
     font-weight: 800;
     animation-name: pulse;
@@ -104,6 +115,13 @@ header > .button {
     animation-iteration-count: 3;
 }
 
+@keyframes pulse {
+    0% {font-size: 1em;}
+    50% {font-size: 1.5em;}
+    100% {font-size: 1em;}
+}
+
+/* flash red "-5" when answer is wrong */
 .subtract {
     position: relative;
 }
@@ -117,23 +135,13 @@ header > .button {
     animation-duration: 0.5s;
 }
 
-@keyframes pulse {
-    0% {font-size: 1em;}
-    50% {font-size: 1.5em;}
-    100% {font-size: 1em;}
-}
-
-@keyframes pulseFade {
-    0% {font-size: 0; opacity: 1;}
-    25% {font-size: 1.5em;opacity: 1;}
-    100% {font-size: 1.5em; opacity: 0;}
-}
-
 @keyframes redFlash {
     0% {color: #000; font-size: 1em;}
     50% {color: red; font-size: 1.25em; opacity: 1;}
     100% {color:#000; font-size: 1em; opacity: 0;}
 }
+
+
 
 #question-box {
     display: flex;
@@ -149,6 +157,8 @@ header > .button {
     font-size: 1.5em;
     font-weight: 700;
 }
+
+/* small screens */
 
 @media screen and (min-width: 480px) {
 
@@ -170,6 +180,7 @@ header > .button {
     }
 }
 
+/* large screens */
 @media screen and (min-width: 769px) {
     h1 {
         font-size: 3em;
