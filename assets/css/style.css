@@ -82,6 +82,27 @@ header > .button {
     align-items: center;
 }
 
+.correct {
+    color: green;
+}
+
+.wrong, .low {
+    color: red;
+}
+
+.correct, .wrong, .low {
+    font-weight: 800;
+    animation-name: pulseDisplay;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes pulseDisplay {
+    0% {font-size: 0; opacity: 1;}
+    25% {font-size: 2em;opacity: 1;}
+    100% {font-size: 2em; opacity: 0;}
+}
+
 #question-box {
     display: flex;
     flex-direction: column;

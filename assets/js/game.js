@@ -22,7 +22,16 @@ function startTimer () {
 
         countdown--;
 
-        timerEl.textContent = countdown;
+        if ( countdown <= 10 ) {
+
+            timerEl.innerHTML = `<span class="low">${countdown}</span>`;
+
+        } else {
+
+            timerEl.textContent = countdown;
+            
+        }
+
 
         // if timer runs out clear question box amd print end screen
         if ( !countdown ) {
@@ -88,12 +97,12 @@ gameBoxEl.addEventListener( 'click', function ( event ) {
 
         if ( clickedAnswer === currentQuestion.correctAnswer ) {
 
-            responseBoxEl.textContent = 'Correct!';
+            responseBoxEl.innerHTML = '<span class="correct">Correct!</span>';
             score++;
 
         } else {
 
-            responseBoxEl.textContent = 'Wrong!';
+            responseBoxEl.innerHTML = '<span class="wrong">Wrong!</span>';
 
         }
 
