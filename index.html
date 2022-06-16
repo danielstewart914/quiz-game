@@ -5,13 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 
     <title>Quiz Game</title>
 </head>
 <body>
-
-
+    <header>
+        <a href="highscores.html" class="button">High Scores</a>
+        <h1 id="title">JavaScript Coding Quiz</h1>
+        <div id="timer-box" class="timer-container">
+            <span>Time: </span><span id="timer">0</span>
+        </div>
+    </header>
+    <main id="game-container">
+        <div id="welcome" class="show">
+            <h2>Welcome to the JavaScript Coding Quiz Game!</h2>
+            <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+                Recusandae voluptatibus eos earum officia, perspiciatis at 
+                exercitationem rem qui accusantium. Iste!
+            </p>
+        </div>
+        <div id="question-box" class="hide"></div>
+        <div id="end-screen" class="hide"></div>
+        <div id="response-box" class="hide"></div>
+    </main>
     
     <script src="./assets/js/questions.js"></script>
     <script src="./assets/js/game.js"></script>
