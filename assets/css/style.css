@@ -89,6 +89,7 @@ header > .button {
 
 #response-box {
     height: 4rem;
+    line-height: 4rem;
 }
 
 #score-box {

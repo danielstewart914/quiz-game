@@ -6,57 +6,15 @@ var questions = [
 },
 
 {
-    question: '',
-    answers: [ '', '', '', '' ],
-    correctAnswer: ''
+    question: 'Test Question 2',
+    answers: [ 'Bob', 'Larry', 'Patrick', 'Orange' ],
+    correctAnswer: 'Orange'
 },
 
 {
-    question: '',
-    answers: [ '', '', '', '' ],
-    correctAnswer: ''
-},
-
-{
-    question: '',
-    answers: [ '', '', '', '' ],
-    correctAnswer: ''
-},
-
-{
-    question: '',
-    answers: [ '', '', '', '' ],
-    correctAnswer: ''
-},
-
-{
-    question: '',
-    answers: [ '', '', '', '' ],
-    correctAnswer: ''
-},
-
-{
-    question: '',
-    answers: [ '', '', '', '' ],
-    correctAnswer: ''
-},
-
-{
-    question: '',
-    answers: [ '', '', '', '' ],
-    correctAnswer: ''
-},
-
-{
-    question: '',
-    answers: [ '', '', '', '' ],
-    correctAnswer: ''
-},
-
-{
-    question: '',
-    answers: [ '', '', '', '' ],
-    correctAnswer: ''
-},
+    question: 'Test Question 3',
+    answers: [ '1', '2', '3', '4' ],
+    correctAnswer: '2'
+}
 
 ];
