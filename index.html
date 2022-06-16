@@ -14,22 +14,23 @@
     <header>
         <a href="highscores.html" class="button">High Scores</a>
         <h1 id="title">JavaScript Coding Quiz</h1>
-        <div id="timer-box" class="timer-container">
+        <div class="timer-container">
             <span>Time: </span><span id="timer">0</span>
         </div>
     </header>
     <main id="game-container">
-        <div id="welcome" class="show">
+        <div id="welcome-screen" class="welcome">
             <h2>Welcome to the JavaScript Coding Quiz Game!</h2>
             <p>
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
                 Recusandae voluptatibus eos earum officia, perspiciatis at 
                 exercitationem rem qui accusantium. Iste!
             </p>
+            <button id="start-button" class="button">Start Game</button>
         </div>
-        <div id="question-box" class="hide"></div>
-        <div id="end-screen" class="hide"></div>
-        <div id="response-box" class="hide"></div>
+        <div id="question-box"></div>
+        <div id="end-screen"></div>
+        <div id="response-box"></div>
     </main>
     
     <script src="./assets/js/questions.js"></script>
