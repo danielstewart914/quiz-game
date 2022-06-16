@@ -22,20 +22,23 @@ function startTimer () {
 
         countdown--;
 
+        // if countdown is 10 or below start pulsing the timer
         if ( countdown <= 10 ) {
 
             timerEl.innerHTML = `<span class="low">${countdown}</span>`;
 
         } else {
 
-            timerEl.textContent = countdown;
-            
+            timerEl.children[0].textContent = countdown;
+
         }
 
 
         // if timer runs out clear question box amd print end screen
-        if ( !countdown ) {
+        if ( countdown <= 0 ) {
             clearInterval( timerInterval );
+
+            countdown = 0;
 
             questionBoxEl.innerHTML = '';
 
@@ -46,6 +49,7 @@ function startTimer () {
 }
 
 function printQuestion () {
+
     // print question in h2 header and create 4 buttons from the question object
     questionBoxEl.innerHTML =  `
         <h2>${currentQuestion.question}</h2>
@@ -73,8 +77,28 @@ function printWelcomeScreen() {
 }
 
 function printEndScreen () {
+
     endScreenEl.textContent = 'End content screen here!';
-    scoreEl.innerHTML = 'Score: ' + score;
+    timerEl.innerHTML = `<span class="pulse">${countdown}</span>`;
+    scoreEl.innerHTML = `<span class="pulse">${score}</span>`;
+
+    var addScoreTimer = setInterval( function () {
+
+        if ( countdown <= 0 ) {
+        
+            clearInterval( addScoreTimer );
+
+        } else {
+
+            countdown--;
+            score++;
+
+            timerEl.children[0].textContent = countdown;
+            scoreEl.children[0].textContent = score;
+
+        }
+
+    }, 50 );
 }
 
 gameBoxEl.addEventListener( 'click', function ( event ) {
@@ -84,11 +108,13 @@ gameBoxEl.addEventListener( 'click', function ( event ) {
         // clear welcome screen
         welcomeScreenEl.innerHTML = '';
 
+        // print first question
         printQuestion();
         startTimer();
 
     }
 
+    // if you an answer button is clicked check against the correct answer
     if (  event.target.classList.contains( 'answer-button' ) ) {
 
         console.log( 'answer button clicked' );
@@ -103,24 +129,31 @@ gameBoxEl.addEventListener( 'click', function ( event ) {
         } else {
 
             responseBoxEl.innerHTML = '<span class="wrong">Wrong!</span>';
+            countdown -= 5;
+            timerEl.innerHTML = `<span class="subtract">${countdown}</span>`;
 
         }
 
         questionPointer++;
 
+        // if we reach the end of the question array end game else continue
         if ( questionPointer === questions.length ) {
 
+            // clear question box
             questionBoxEl.innerHTML = '';
+
+            // stop timer
             clearInterval( timerInterval );
+
+            // print the end game screen
             printEndScreen();
 
         } else {
-
+            // print next question to the screen
             currentQuestion = questions[questionPointer];
             printQuestion();
 
         }
     }
-
 
 } );
