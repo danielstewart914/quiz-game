@@ -4,7 +4,11 @@
     --light: #fbe40eff;
     --dark: #140f2dff;
     --middle: #f58a07ff;
-}   
+} 
+
+body {
+		font-size: 20px;
+}
 
 header {
     background-color: var(--primary);
