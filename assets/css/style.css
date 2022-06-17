@@ -8,6 +8,8 @@
 
 body {
 		font-size: 20px;
+		background-color: var(--middle);
+		color: #fff;
 }
 
 header {
@@ -50,6 +52,7 @@ main {
     margin: 0.5em auto;
     color: var(--light);
     text-decoration: none;
+		border: 3px solid var(--secondary);
     border-radius: 0.25em;
     cursor: pointer;
 }
@@ -139,7 +142,7 @@ header > .button {
 .subtract::before {
     content: "-5 ";
     position: absolute;
-    left: -1em;
+    left: -1.25em;
     color: red;;
     animation-name: redFlash;
     animation-fill-mode: forwards;
