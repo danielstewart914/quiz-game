@@ -101,6 +101,8 @@ function printEndScreen () {
     }, 50 );
 }
 
+
+// listen for click events in main content box
 gameBoxEl.addEventListener( 'click', function ( event ) {
 
     if ( event.target.id === 'start-button' ) {
@@ -130,6 +132,13 @@ gameBoxEl.addEventListener( 'click', function ( event ) {
 
             responseBoxEl.innerHTML = '<span class="wrong">Wrong!</span>';
             countdown -= 5;
+
+            if ( countdown < 0 ) {
+
+                countdown = 0;
+
+            }            
+
             timerEl.innerHTML = `<span class="subtract">${countdown}</span>`;
 
         }

@@ -31,7 +31,7 @@ var questions = [
 
 {
     question: 'Which of the following is true about variable naming conventions in JavaScript?',
-    answers: [ 'JavaScript variable names must begin with a letter or underscore', 'JavaScript variable names are case sensitive', 'Both of the above', ' None of the above' ],
+    answers: [ 'Variables must begin with a letter or underscore', 'Variable names are case sensitive', 'Both of the above', ' None of the above' ],
     correctAnswer: 'Both of the above'
 },
 

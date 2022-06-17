@@ -43,7 +43,7 @@ main {
     background-color: var(--dark);
     text-align: center;
     padding: 0.5em;
-    margin: 0.5em;
+    margin: 0.5em auto;
     color: var(--light);
     text-decoration: none;
     border-radius: 0.25em;
@@ -94,15 +94,21 @@ header > .button {
 }
 
 /* Pulse and fade text for correct, wrong, and low timer */
-.correct, .wrong, .low {
+.correct, .wrong {
     font-weight: 800;
     animation-name: pulseFade;
     animation-duration: 1.5s;
     animation-fill-mode: forwards;
 }
 
+.low {
+    font-weight: 700;
+    animation-name: pulseFade;
+    animation-duration: 1s;
+}
+
 @keyframes pulseFade {
-    0% {font-size: 0; opacity: 1;}
+    0% {font-size: 0.5em; opacity: 1;}
     25% {font-size: 1.5em;opacity: 1;}
     100% {font-size: 1.5em; opacity: 0;}
 }
@@ -129,19 +135,22 @@ header > .button {
 .subtract::before {
     content: "-5 ";
     position: absolute;
-    left: -1.5em;
+    left: -1em;
+    color: red;;
     animation-name: redFlash;
     animation-fill-mode: forwards;
-    animation-duration: 0.5s;
+    animation-duration: 0.75s;
 }
 
 @keyframes redFlash {
-    0% {color: #000; font-size: 1em;}
-    50% {color: red; font-size: 1.25em; opacity: 1;}
-    100% {color:#000; font-size: 1em; opacity: 0;}
+    0% {font-size: 1em;}
+    50% {font-size: 1.25em; opacity: 1;}
+    100% {font-size: 1em; opacity: 0;}
 }
 
-
+.answer-button {
+    min-width: 300px;
+}
 
 #question-box {
     display: flex;
@@ -167,6 +176,11 @@ header > .button {
         font-size: 1.5em;
     }
 
+    .subtract::before {
+        left: 0;
+        bottom: -1.5em;
+    }
+
     header {
         justify-content: space-between;
     }
@@ -188,10 +202,6 @@ header > .button {
 
     h2 {
         font-size: 2em;
-    }
-
-    .answer-button {
-        min-width: 300px;
     }
 
 }
