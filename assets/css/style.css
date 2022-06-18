@@ -65,11 +65,6 @@ header > .button {
     margin: 1em;
 }
 
-.spacer {
-    width: 1em;
-    height: 1em;
-}
-
 .timer-container {
     display: flex;
     flex-direction: column;
@@ -165,8 +160,7 @@ main > div {
 }
 
 .answer-button {
-    min-width: 200px;
-    max-width: 80%;
+    width: 80vw;
 }
 
 #response-box {
@@ -177,6 +171,8 @@ main > div {
 #score-box {
     font-size: 1.5em;
     font-weight: 700;
+    height: 3rem;
+    flex-wrap: nowrap;
 }
 
 /* very small screens */
@@ -192,9 +188,12 @@ main > div {
         font-size: 1.5em;
     }
 
+    .answer-button {
+        min-width: 200px;
+    }
 }
 
-/* small screens */
+/* small screens and laptops */
 
 @media screen and (min-width: 480px) {
 
@@ -221,6 +220,10 @@ main > div {
         order: 0;
         margin: auto;
     }
+
+    .answer-button {
+        width: 60vw;
+    }
 }
 
 /* large screens */
@@ -228,5 +231,9 @@ main > div {
 
     body {
         font-size: 1.5rem;
+    }
+
+    .answer-button {
+        width: 40vw;
     }
 }
