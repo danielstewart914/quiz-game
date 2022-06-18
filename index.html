@@ -15,7 +15,7 @@
         <a href="highscores.html" class="button">High Scores</a>
         <h1 id="title">JavaScript Coding Quiz</h1>
         <div class="timer-container">
-            <span>Time: </span><span id="timer"><span>0</span></span>
+            <span>Time: </span><span id="timer">0</span>
         </div>
     </header>
 
@@ -23,12 +23,14 @@
     <main id="game-container">
 
         <!-- Welcome screen -->
-        <div id="welcome-screen" class="welcome">
+        <div id="welcome-screen">
             <h2>Welcome to the JavaScript Coding Quiz Game!</h2>
             <p>
-							Hit start to begin the quiz. <br />
-							Try and answer all questions as quickly as you can. Every correct answer earns you 1 point towards your final score. <br />
-							Every wrong answer will subtract 5 seconds off your time. If you finish before time runs out any remaining time will be added to your score as a bonus. 
+				Hit start to begin the quiz. <br />
+				Try and answer all questions as quickly as you can. <br />
+                Every correct answer earns you 1 point towards your final score. <br />
+				Every wrong answer will subtract 5 seconds off your time. <br />
+                If you finish before time runs out any remaining time will be added to your score as a bonus. 
             </p>
             <button id="start-button" class="button">Start Game</button>
         </div>
@@ -39,11 +41,15 @@
         <!-- game questions will be displayed here -->
         <div id="question-box"></div>
 
-        <!-- end screen and high score submission form will be displayed here -->
-        <div id="end-screen"></div>
-
         <!-- score will be displayed here -->
         <div id="score-box"></div>
+
+        <!-- end screen and high score submission form will be displayed here -->
+        <div id="end-screen" class="hide">
+            High Score input here.
+
+        </div>
+
     </main>
     <!-- javascript files questions.js must be included before game.js to work -->
     <script src="./assets/js/questions.js"></script>

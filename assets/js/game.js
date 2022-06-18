@@ -29,7 +29,7 @@ function startTimer () {
 
         } else {
 
-            timerEl.children[0].textContent = countdown;
+            timerEl.innerHTML = countdown;
 
         }
 
@@ -40,7 +40,7 @@ function startTimer () {
 
             countdown = 0;
 
-            questionBoxEl.innerHTML = '';
+            questionBoxEl.classList.add( 'hide' );
 
             printEndScreen();
         }
@@ -64,15 +64,20 @@ function printQuestion () {
 
 function printEndScreen () {
 
-    endScreenEl.textContent = 'End content screen here!';
+    // pulse timer and score
     timerEl.innerHTML = `<span class="pulse">${countdown}</span>`;
-    scoreEl.innerHTML = `<span class="pulse">${score}</span>`;
+    scoreEl.innerHTML = `Score: <span class="pulse">${score}</span>`;
+
 
     var addScoreTimer = setInterval( function () {
 
         if ( countdown <= 0 ) {
         
             clearInterval( addScoreTimer );
+
+            // hide question box
+            questionBoxEl.classList.add( 'hide' );
+            endScreenEl.classList.remove( 'hide' );
 
         } else {
 
@@ -91,6 +96,7 @@ function printEndScreen () {
 // listen for click events in main content box
 gameBoxEl.addEventListener( 'click', function ( event ) {
 
+    // if the start button is clicked start game
     if ( event.target.id === 'start-button' ) {
 
         // clear welcome screen
@@ -133,9 +139,6 @@ gameBoxEl.addEventListener( 'click', function ( event ) {
 
         // if we reach the end of the question array end game else continue
         if ( questionPointer === questions.length ) {
-
-            // clear question box
-            questionBoxEl.innerHTML = '';
 
             // stop timer
             clearInterval( timerInterval );
