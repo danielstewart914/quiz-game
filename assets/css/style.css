@@ -83,7 +83,7 @@ header > .button {
     line-height: 2rem;
 }
 
-.welcome {
+main > div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -162,11 +162,6 @@ header > .button {
 
 .answer-button {
     min-width: 300px;
-}
-
-#question-box {
-    display: flex;
-    flex-direction: column;
 }
 
 #response-box {
