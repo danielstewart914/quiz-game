@@ -61,7 +61,7 @@ var questions = [
 
 ];
 
-var objectTemplate = 
+var questionObjectTemplate = 
 {
     question: '',
     answers: [ '', '', '', '' ],
