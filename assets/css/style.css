@@ -6,8 +6,10 @@
     --middle: #f58a07ff;
 } 
 
+/* default formatting for mobile */
+
 body {
-		font-size: 20px;
+		font-size: 18px;
 		background-color: var(--middle);
 		color: #fff;
 }
@@ -16,17 +18,19 @@ header {
     background-color: var(--primary);
     padding: 1em;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    height: 8em;
+    flex-wrap: wrap;
+    min-height: 8em;
 }
 
 h1 {
-    margin: auto 0.5em;
+    margin: auto;
     color: var(--dark);
     text-align: center;
     font-size: 2em;
     font-weight: 700;
+    order: -1;
 }
 
 h2 {
@@ -52,13 +56,13 @@ main {
     margin: 0.5em auto;
     color: var(--light);
     text-decoration: none;
-		border: 3px solid var(--secondary);
+	border: 3px solid var(--secondary);
     border-radius: 0.25em;
     cursor: pointer;
 }
 
 header > .button {
-    margin-right: auto;
+    margin: 1em;
 }
 
 .spacer {
@@ -71,7 +75,7 @@ header > .button {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    margin-left: auto;
+    margin: 1em;
     height: 3em;
     font-size: 1.25em;
     font-weight: 600;
@@ -161,7 +165,8 @@ main > div {
 }
 
 .answer-button {
-    min-width: 300px;
+    min-width: 200px;
+    max-width: 80%;
 }
 
 #response-box {
@@ -174,6 +179,21 @@ main > div {
     font-weight: 700;
 }
 
+/* very small screens */
+
+@media screen and (max-width: 310px) {
+    
+    header {
+        flex-direction: column;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 1.5em;
+    }
+
+}
+
 /* small screens */
 
 @media screen and (min-width: 480px) {
@@ -181,6 +201,7 @@ main > div {
     .timer-container {
         flex-direction: row;
         font-size: 1.5em;
+        margin: 1em;
     }
 
     .subtract::before {
@@ -189,26 +210,23 @@ main > div {
     }
 
     header {
-        justify-content: space-between;
+        flex-wrap: nowrap;
     }
 
     header > .button {
-        margin: 0;
+        margin: 1em;
     }
 
-    .timer-container {
-        margin: 0;
+    h1 {
+        order: 0;
+        margin: auto;
     }
 }
 
 /* large screens */
 @media screen and (min-width: 769px) {
-    h1 {
-        font-size: 3em;
-    }
 
-    h2 {
-        font-size: 2em;
+    body {
+        font-size: 1.5rem;
     }
-
 }
