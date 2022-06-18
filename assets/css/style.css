@@ -86,6 +86,11 @@ header > .button {
     align-items: center;
 }
 
+/* hide element */
+.hide {
+    display: none;
+}
+
 /* flash green text on screen when answer is correct */
 
 .correct {

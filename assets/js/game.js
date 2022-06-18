@@ -62,20 +62,6 @@ function printQuestion () {
     scoreEl.innerHTML = 'Score: ' + score;
 }
 
-function printWelcomeScreen() {
-
-    welcomeScreenEl.innerHTML = `
-        <h2>Welcome to the JavaScript Coding Quiz Game!</h2>
-        <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
-            Recusandae voluptatibus eos earum officia, perspiciatis at 
-            exercitationem rem qui accusantium. Iste!
-        </p>
-    <button id="start-button" class="button">Start Game</button>
-    `;
-
-}
-
 function printEndScreen () {
 
     endScreenEl.textContent = 'End content screen here!';
@@ -108,7 +94,7 @@ gameBoxEl.addEventListener( 'click', function ( event ) {
     if ( event.target.id === 'start-button' ) {
 
         // clear welcome screen
-        welcomeScreenEl.innerHTML = '';
+        welcomeScreenEl.classList.add( 'hide' );
 
         // print first question
         printQuestion();
