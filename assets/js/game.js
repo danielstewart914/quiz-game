@@ -6,11 +6,12 @@ var endScreenEl = document.querySelector( '#end-screen' );
 var responseBoxEl = document.querySelector( '#response-box' );
 var submitButtonEl = document.querySelector( '#submit-high-score' );
 var highScoreResponseEl = document.querySelector( '#high-score-display' );
+var highScoreFormEl = document.querySelector( '#high-score-form' );
 var scoreEl = document.querySelector( '#score-box' );
 var timerEl = document.querySelector( '#timer' );
 
 // other global variables
-var highsScores = JSON.parse( localStorage.getItem( 'highScores' ) );
+var highScores = JSON.parse( localStorage.getItem( 'highScores' ) );
 var questionPointer;
 var currentQuestion;
 var timerInterval;
@@ -19,6 +20,7 @@ var score = 0;
 
 const oneSecond = 1000;
 
+// starts game timer
 function startTimer () {
     
     timerInterval = setInterval( function () {
@@ -28,7 +30,7 @@ function startTimer () {
         // if countdown is 10 or below start pulsing the timer
         if ( countdown <= 10 ) {
 
-            timerEl.innerHTML = `<span class="low">${countdown}</span>`;
+            timerEl.innerHTML = `<span class="low">${ countdown }</span>`;
 
         } else {
 
@@ -50,6 +52,32 @@ function startTimer () {
     }, oneSecond );
 }
 
+// starts game running
+function startGame () {
+
+    // clear welcome screen and end screen and display questions
+    welcomeScreenEl.classList.add( 'hide' );
+    endScreenEl.classList.add( 'hide' );
+    questionBoxEl.classList.remove( 'hide' );
+
+
+    // pointer to first question
+    questionPointer = 0;
+
+    // set initial value of question
+    currentQuestion = questions[questionPointer];
+
+    // set countdown and timer to initial values
+    countdown = 30;
+    score = 0;
+
+    // print first question
+    printQuestion();
+    startTimer();
+
+}
+
+// prints new question on screen
 function printQuestion () {
 
     // display question in h2 header and create 4 buttons from the current question object
@@ -65,11 +93,39 @@ function printQuestion () {
     scoreEl.innerHTML = 'Score: ' + score;
 }
 
-function displayEndScreen () {
+// checks if clicked answer is the correct answer
+function checkAnswer ( event ) {
 
+    var clickedAnswer = event.target.dataset.answer;
+
+    if ( clickedAnswer === currentQuestion.correctAnswer ) {
+
+        responseBoxEl.innerHTML = '<span class="correct">Correct!</span>';
+        score++;
+
+    } else {
+
+        responseBoxEl.innerHTML = '<span class="wrong">Wrong!</span>';
+        countdown -= 5;
+
+        if ( countdown < 0 ) {
+
+            countdown = 0;
+
+        }            
+
+        timerEl.innerHTML = `<span class="subtract">${ countdown }</span>`;
+
+    }
+
+}
+
+// displays end screen and high score submission form
+function displayEndScreen () {
+    
     // pulse timer and score
-    timerEl.innerHTML = `<span class="pulse">${countdown}</span>`;
-    scoreEl.innerHTML = `<span class="pulse">Score: ${score}</span>`;
+    timerEl.innerHTML = `<span class="pulse">${ countdown }</span>`;
+    scoreEl.innerHTML = `<span class="pulse">Score: ${ score }</span>`;
 
     // transfer remaining time to score
     var addTimerToScore = setInterval( function () {
@@ -80,6 +136,7 @@ function displayEndScreen () {
 
             // reveal end screen
             endScreenEl.classList.remove( 'hide' );
+            highScoreFormEl.classList.remove( 'hide' );
 
         } else {
 
@@ -95,58 +152,75 @@ function displayEndScreen () {
 }
 
 
+// saves high score to local storage
+function saveHighScore ( event ) {
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    //get initials from form
+    var enteredInitials = document.querySelector( '#initials' ).value;
+
+    // if no initials are entered make initials 'MVP'
+    if ( !enteredInitials ) {
+
+        enteredInitials = 'MVP';
+    }
+
+    // create high score object
+    var thisHighScore = {
+
+        initials: enteredInitials.toUpperCase(),
+        score: score
+
+    };
+
+    // if no high scores are saved start new array with high score object as first item
+    // otherwise push new high score to the end of the array
+    if ( !highScores ) {
+
+        highScores = [ thisHighScore ];
+
+    } else {
+
+        highScores.push( thisHighScore );
+
+    }
+
+    // sort high score array by score before saving to local storage
+    highScores.sort( function ( a, b ) {
+
+        return b.score - a.score;
+
+    } );
+
+    // save high scores to localStorage 
+     localStorage.setItem( 'highScores', JSON.stringify( highScores ) );
+
+    // display thank you and high score submission
+    highScoreResponseEl.innerHTML = `
+        <h3>${ enteredInitials } - ${ score }</h3>
+        Thank you. Your high score has been saved.
+    `;
+
+    highScoreFormEl.classList.add( 'hide' );
+
+}
+
 // listen for click events in main content box
 gameBoxEl.addEventListener( 'click', function ( event ) {
 
     // if the start button is clicked start game
     if (  event.target.classList.contains( 'start' ) ) {
 
-        // clear welcome screen and display questions
-        welcomeScreenEl.classList.add( 'hide' );
-        endScreenEl.classList.add( 'hide' );
-        questionBoxEl.classList.remove( 'hide' );
-
-
-        // pointer to first question
-        questionPointer = 0;
-
-        // set initial value of question
-        currentQuestion = questions[questionPointer];
-
-        countdown = 30;
-
-        score = 0;
-
-        // print first question
-        printQuestion();
-        startTimer();
+        startGame();
 
     }
 
     // if you an answer button is clicked check against the correct answer
     if (  event.target.classList.contains( 'answer' ) ) {
 
-        var clickedAnswer = event.target.dataset.answer;
-
-        if ( clickedAnswer === currentQuestion.correctAnswer ) {
-
-            responseBoxEl.innerHTML = '<span class="correct">Correct!</span>';
-            score++;
-
-        } else {
-
-            responseBoxEl.innerHTML = '<span class="wrong">Wrong!</span>';
-            countdown -= 5;
-
-            if ( countdown < 0 ) {
-
-                countdown = 0;
-
-            }            
-
-            timerEl.innerHTML = `<span class="subtract">${countdown}</span>`;
-
-        }
+        checkAnswer( event );
 
         questionPointer++;
 
@@ -169,41 +243,15 @@ gameBoxEl.addEventListener( 'click', function ( event ) {
             printQuestion();
 
         }
-    }
 
+    } 
+
+    if ( event.target.classList.contains( 'back' ) ) {
+
+        location.reload();
+
+    }
 } );
 
-// listen for high score
-submitButtonEl.addEventListener( 'click', function (event) {
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    //get initials from form
-    var enteredInitials = document.querySelector( '#initials' ).value;
-
-    // if blank make initials 'MVP'
-    if ( !enteredInitials ) {
-
-        enteredInitials = 'MVP';
-    }
-
-    // if no highscore are entered
-    if ( !highsScores ) {
-        
-        console.log( 'yes' );
-    
-    }
-
-    var highScore = {
-        initials: enteredInitials.toUpperCase(),
-        score: score
-    };
-
-    // display high thank you and high score submission
-    highScoreResponseEl.innerHTML = `
-        <h3>${ enteredInitials } - ${ score }</h3>
-        Thank you. Your high score has been saved.
-    `;
-
-} );
+// listen for high score button click
+submitButtonEl.addEventListener( 'click', saveHighScore );
