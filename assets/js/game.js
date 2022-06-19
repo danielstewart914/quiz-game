@@ -20,6 +20,30 @@ var score = 0;
 
 const oneSecond = 1000;
 
+// shuffles the elements in an array
+function shuffleArray( array ) {
+
+    var length = array.length;
+    var element1;
+    var element2;
+
+    // while there are elements left
+    while ( length ) {
+
+        //pick a remaining element
+        element1 = Math.floor( Math.random() * length-- );
+        
+        // swap element with current element
+        element2 = array[ length ];
+        array[ length ] = array [ element1 ];
+        array[ element1 ] = element2;
+
+    }
+
+    return array;
+
+}
+
 // starts game timer
 function startTimer () {
     
@@ -59,6 +83,9 @@ function startGame () {
     welcomeScreenEl.classList.add( 'hide' );
     endScreenEl.classList.add( 'hide' );
     questionBoxEl.classList.remove( 'hide' );
+
+    // shuffle questions so they don't appear in the same order every time the game is played
+    questions = shuffleArray( questions );
 
 
     // pointer to first question
