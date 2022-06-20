@@ -38,6 +38,21 @@ var countdown;
 var score = 0;
 
 const oneSecond = 1000;
+    
+// var testHighScores = [ 
+//     { initials: "DBG", score: 45 }, 
+//     { initials: "MVP", score: 37 }, 
+//     { initials: "LAS", score: 33 },
+//     { initials: "AKG", score: 30 },
+//     { initials: "CSG", score: 28 },
+//     { initials: "MVP", score: 27 },
+//     { initials: "DBG", score: 24 },
+//     { initials: "DBG", score: 20 },
+//     { initials: "MDS", score: 18 },
+//     { initials: "ADS", score: 10 }
+// ];
+
+// highScores = testHighScores;
 
 // shuffles the elements in an array using Fisher–Yates Shuffle
 // I used the algorithm at the bottom of this article https://bost.ocks.org/mike/shuffle/
@@ -99,17 +114,19 @@ function startTimer () {
 // starts game running
 function startGame () {
 
-    // clear welcome screen and end screen and display questions
+    // hide everything except the question box
     welcomeScreenEl.classList.add( 'hide' );
     endScreenEl.classList.add( 'hide' );
+    highScoreFormEl.classList.add( 'hide' );
     highScoreSubmissionEl.classList.add( 'hide' );
+
+    // reveal question box
     questionBoxEl.classList.remove( 'hide' );
 
     // shuffle questions so they don't appear in the same order every time the game is played
     shuffleArray( questions );
 
-
-    // pointer to first question
+    // set pointer to first question
     questionPointer = 0;
 
     // set initial value of question
@@ -121,6 +138,8 @@ function startGame () {
 
     // print first question
     printQuestion();
+
+    // start game timer
     startTimer();
 
 }
@@ -220,6 +239,7 @@ function displayEndScreen () {
             // else display try again message
             } else {
 
+                highScoreSubmissionEl.classList.remove( 'hide' );
                 highScoreSubmissionEl.innerHTML = `
                     <h3>Your score did not meet the Top 10</h3>
                     Please try again.
