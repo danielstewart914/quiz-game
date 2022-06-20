@@ -133,7 +133,7 @@ function startGame () {
     currentQuestion = questions[questionPointer];
 
     // set countdown and timer to initial values
-    countdown = 30;
+    countdown = 60;
     score = 0;
 
     // print first question
@@ -241,7 +241,7 @@ function displayEndScreen () {
 
                 highScoreSubmissionEl.classList.remove( 'hide' );
                 highScoreSubmissionEl.innerHTML = `
-                    <h3>Your score did not meet the Top 10</h3>
+                    <h3>Your score did not make it into the Top 10</h3>
                     Please try again.
                 `;
 

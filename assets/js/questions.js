@@ -37,8 +37,8 @@ var questions = [
 
 {
     question: 'Which symbol is used separate JavaScript statements?',
-    answers: [ 'Comma', 'Colon', 'Hyphen', 'Semicolon' ],
-    correctAnswer: 'Semicolon'
+    answers: [ 'Comma \,', 'Colon \:', 'Hyphen \-', 'Semicolon \;' ],
+    correctAnswer: 'Semicolon \;'
 },
 
 {
@@ -57,6 +57,55 @@ var questions = [
     question: 'What is the default value of an uninitialized variable?',
     answers: [ '0', 'undefined', 'null', 'NaN' ],
     correctAnswer: 'undefined'
+},
+{
+    question: 'Which of the following represent falsy values in javascript?',
+    answers: [ 'false', '\'\'', 'undefined', 'All of the above' ],
+    correctAnswer: 'All of the above'
+},
+{
+    question: 'Which of the following represent truthy values in javascript?',
+    answers: [ 'true', '{}', '[]', 'All of the above' ],
+    correctAnswer: 'All of the above'
+},
+{
+    question: `What type of variable is declared by the following?
+                <div class="snippet"><span class="blue">var </span>
+                <span class="light-blue">data</span>
+                <span class="yellow">[]</span>;
+                </div>`,
+    answers: [ 'array', 'object', 'string', 'None of the above' ],
+    correctAnswer: 'array'
+},
+{
+    question: 'Which method is used to insert a new element at the end of an array?',
+    answers: [ 'unshift()', 'push()', 'pop()', 'None of the above' ],
+    correctAnswer: 'push()'
+},
+{
+    question: 'Which of the following types of variable are only visible within a function where it is declared?',
+    answers: [ 'global variable', 'local variable', 'Both of the above', 'None of the Above' ],
+    correctAnswer: 'local variable'
+}, 
+{
+    question: `What will the output of the following code be?
+                <div class="snippet">
+                    <span class="light-blue">console</span>.<span class="pale-yellow">log</span><span class="yellow">(</span>
+                    <span class="blue">typeof</span>
+                    <span class="purple">(</span>
+                    <span class="orange">'1'</span>
+                    +
+                    <span class= pale-green>2</span>
+                    <span class="purple">)</span>
+                    <span class="yellow">)</span>;
+                </div>`,
+    answers: [ '\'boolean\'', '\'string\'', '\'number\'', 'None of the above' ],
+    correctAnswer: '\'string\''
+},
+{
+    question: 'Which of the following array methods removes the first element and returns that element?',
+    answers: [ 'reverse()', 'shift()', 'slice()', 'some()' ],
+    correctAnswer: 'shift()'
 }
 
 ];
