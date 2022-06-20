@@ -1,14 +1,33 @@
 // variables for DOM elements
+// main content
 var gameBoxEl = document.querySelector( '#game-container' );
+
+// Welcome screen
 var welcomeScreenEl = document.querySelector( '#welcome-screen' );
+
+// game questions will be displayed here
 var questionBoxEl = document.querySelector( '#question-box' );
+
+//end screen will be displayed here
 var endScreenEl = document.querySelector( '#end-screen' );
+
+// correct/wrong will be displayed here
 var responseBoxEl = document.querySelector( '#response-box' );
-var submitButtonEl = document.querySelector( '#submit-high-score' );
-var endScoreResponseEl = document.querySelector( '#end-score-display' );
+
+// High Score submission thank you will be displayed here
+var highScoreSubmissionEl = document.querySelector( '#high-score-submission' );
+
+// high score submission form
 var highScoreFormEl = document.querySelector( '#high-score-form' );
-var scoreEl = document.querySelector( '#score-box' );
+
+// score will be displayed here
+var scoreEl = document.querySelector( '#score-box' ); 
+
+// timer will be displayed here
 var timerEl = document.querySelector( '#timer' );
+
+// high score submission button
+var submitHighScoreButton = document.querySelector( '#submit-high-score' );
 
 // other global variables
 var highScores = JSON.parse( localStorage.getItem( 'highScores' ) );
@@ -83,7 +102,7 @@ function startGame () {
     // clear welcome screen and end screen and display questions
     welcomeScreenEl.classList.add( 'hide' );
     endScreenEl.classList.add( 'hide' );
-    endScoreResponseEl.classList.add( 'hide' );
+    highScoreSubmissionEl.classList.add( 'hide' );
     questionBoxEl.classList.remove( 'hide' );
 
     // shuffle questions so they don't appear in the same order every time the game is played
@@ -152,6 +171,29 @@ function checkAnswer ( event ) {
 
 }
 
+// check if current score is a high score
+function checkIfHighScore () {
+
+    if ( highScores ) {
+
+        if (  highScores.length < 10 || highScores.length === 10 && score > highScores[9].score ) {
+        
+            return true;
+    
+        } else {
+
+            return false;
+            
+        }
+
+    } else {
+
+        return true;
+
+    }
+
+}
+
 // displays end screen and high score submission form
 function displayEndScreen () {
     
@@ -170,41 +212,20 @@ function displayEndScreen () {
             // reveal end screen
             endScreenEl.classList.remove( 'hide' );
 
-            // if there are any high scores stored
-            if ( highScores ) {
-
-                // if there are already 10 high scores stored
-                if ( highScores.length === 10 ) {
-
-                    // check if score is greater than lowest score in high scores
-                    if ( score > highScores[9].score ) {
-
-                        // display high scores entry 
-                        highScoreFormEl.classList.remove( 'hide' );
-
-
-                    // else display message for not meeting top 10 high scores
-                    } else {
-
-                        endScoreResponseEl.innerHTML = `
-                            <h3>Your score did not meet the Top 10</h3>
-                            Please try again.
-                        `;
-
-                    }
-                        
-                } else {
-
-                    highScoreFormEl.classList.remove( 'hide' );
-
-                }
-            // display high scores entry 
-            } else { 
+            // if current score is a high score display high score entry
+            if ( checkIfHighScore() ) {
 
                 highScoreFormEl.classList.remove( 'hide' );
 
-            }
+            // else display try again message
+            } else {
 
+                highScoreSubmissionEl.innerHTML = `
+                    <h3>Your score did not meet the Top 10</h3>
+                    Please try again.
+                `;
+
+            }
 
         // else add countdown to score
         } else {
@@ -236,7 +257,7 @@ function saveHighScore ( event ) {
         enteredInitials = 'MVP';
     }
 
-    // create high score object
+    // create new high score object
     var thisHighScore = {
 
         initials: enteredInitials.toUpperCase(),
@@ -263,16 +284,25 @@ function saveHighScore ( event ) {
 
     } );
 
+    // if there are more than 10 high scores remove lowest score 
+    if ( highScores.length > 10 ) {
+
+        highScores.pop();
+
+    }
+
     // save high scores to localStorage 
      localStorage.setItem( 'highScores', JSON.stringify( highScores ) );
 
     // display thank you and high score submission
-    endScoreResponseEl.classList.remove( 'hide' );
-    endScoreResponseEl.innerHTML = `
-        <h3>${ enteredInitials } - ${ score }</h3>
+    highScoreSubmissionEl.classList.remove( 'hide' );
+
+    highScoreSubmissionEl.innerHTML = `
+        <h3>${ thisHighScore.initials } - ${ thisHighScore.score }</h3>
         Thank you. Your high score has been saved.
     `;
 
+    // hide submission form
     highScoreFormEl.classList.add( 'hide' );
 
 }
@@ -324,4 +354,4 @@ gameBoxEl.addEventListener( 'click', function ( event ) {
 } );
 
 // listen for high score button click
-submitButtonEl.addEventListener( 'click', saveHighScore );
+submitHighScoreButton.addEventListener( 'click', saveHighScore );
