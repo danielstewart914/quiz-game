@@ -83,6 +83,7 @@ function startGame () {
     // clear welcome screen and end screen and display questions
     welcomeScreenEl.classList.add( 'hide' );
     endScreenEl.classList.add( 'hide' );
+    endScoreResponseEl.classList.add( 'hide' );
     questionBoxEl.classList.remove( 'hide' );
 
     // shuffle questions so they don't appear in the same order every time the game is played
@@ -266,6 +267,7 @@ function saveHighScore ( event ) {
      localStorage.setItem( 'highScores', JSON.stringify( highScores ) );
 
     // display thank you and high score submission
+    endScoreResponseEl.classList.remove( 'hide' );
     endScoreResponseEl.innerHTML = `
         <h3>${ enteredInitials } - ${ score }</h3>
         Thank you. Your high score has been saved.
