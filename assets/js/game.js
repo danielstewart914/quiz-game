@@ -192,6 +192,10 @@ function displayEndScreen () {
 
                     }
                         
+                } else {
+
+                    highScoreFormEl.classList.remove( 'hide' );
+
                 }
             // display high scores entry 
             } else { 
