@@ -46,13 +46,14 @@
 
         <!-- end screen and high score submission form will be displayed here -->
         <div id="end-screen" class="hide">
-            <form id="high-score-form">
+            <div></div>
+            <form id="high-score-form" class="hide">
                 <h2>High Score!</h2>
                 <label for="initials">Please Enter your initials to save your score.</label>
-                <input type="text" name="initials" id="initials" maxlength="3">
+                <input type="text" name="initials" id="initials" maxlength="3" placeholder="MVP">
                 <button id="submit-high-score" type="submit" class="button">Submit</button>
             </form>
-            <div id="high-score-display"></div>
+            <div id="end-score-display"></div>
             <button class="start button">Play Again</button>
             <button class="back button">Back to Start</button>
         </div>

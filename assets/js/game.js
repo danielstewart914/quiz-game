@@ -5,7 +5,7 @@ var questionBoxEl = document.querySelector( '#question-box' );
 var endScreenEl = document.querySelector( '#end-screen' );
 var responseBoxEl = document.querySelector( '#response-box' );
 var submitButtonEl = document.querySelector( '#submit-high-score' );
-var highScoreResponseEl = document.querySelector( '#high-score-display' );
+var endScoreResponseEl = document.querySelector( '#end-score-display' );
 var highScoreFormEl = document.querySelector( '#high-score-form' );
 var scoreEl = document.querySelector( '#score-box' );
 var timerEl = document.querySelector( '#timer' );
@@ -126,16 +126,19 @@ function checkAnswer ( event ) {
 
     var clickedAnswer = event.target.dataset.answer;
 
+    // if clicked answer is correct
     if ( clickedAnswer === currentQuestion.correctAnswer ) {
 
         responseBoxEl.innerHTML = '<span class="correct">Correct!</span>';
         score++;
 
+    // answer is wrong 
     } else {
 
         responseBoxEl.innerHTML = '<span class="wrong">Wrong!</span>';
         countdown -= 5;
 
+        // if decrementing count results in negative number set to 0
         if ( countdown < 0 ) {
 
             countdown = 0;
@@ -158,14 +161,47 @@ function displayEndScreen () {
     // transfer remaining time to score
     var addTimerToScore = setInterval( function () {
 
+        // if countdown has finished being added to score
         if ( countdown <= 0 ) {
         
             clearInterval( addTimerToScore );
 
             // reveal end screen
             endScreenEl.classList.remove( 'hide' );
-            highScoreFormEl.classList.remove( 'hide' );
 
+            // if there are any high scores stored
+            if ( highScores ) {
+
+                // if there are already 10 high scores stored
+                if ( highScores.length === 10 ) {
+
+                    // check if score is greater than lowest score in high scores
+                    if ( score > highScores[9].score ) {
+
+                        // display high scores entry 
+                        highScoreFormEl.classList.remove( 'hide' );
+
+
+                    // else display message for not meeting top 10 high scores
+                    } else {
+
+                        endScoreResponseEl.innerHTML = `
+                            <h3>Your score did not meet the Top 10</h3>
+                            Please try again.
+                        `;
+
+                    }
+                        
+                }
+            // display high scores entry 
+            } else { 
+
+                highScoreFormEl.classList.remove( 'hide' );
+
+            }
+
+
+        // else add countdown to score
         } else {
 
             countdown--;
@@ -226,7 +262,7 @@ function saveHighScore ( event ) {
      localStorage.setItem( 'highScores', JSON.stringify( highScores ) );
 
     // display thank you and high score submission
-    highScoreResponseEl.innerHTML = `
+    endScoreResponseEl.innerHTML = `
         <h3>${ enteredInitials } - ${ score }</h3>
         Thank you. Your high score has been saved.
     `;
