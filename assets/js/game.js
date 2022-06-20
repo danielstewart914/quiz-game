@@ -20,7 +20,8 @@ var score = 0;
 
 const oneSecond = 1000;
 
-// shuffles the elements in an array
+// shuffles the elements in an array using Fisher–Yates Shuffle
+// I used the algorithm at the bottom of this article https://bost.ocks.org/mike/shuffle/
 function shuffleArray( array ) {
 
     var length = array.length;
@@ -85,7 +86,7 @@ function startGame () {
     questionBoxEl.classList.remove( 'hide' );
 
     // shuffle questions so they don't appear in the same order every time the game is played
-    questions = shuffleArray( questions );
+    shuffleArray( questions );
 
 
     // pointer to first question
