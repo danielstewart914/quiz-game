@@ -3,15 +3,13 @@
     --secondary: #cc0003ff;
     --light: #fbe40eff;
     --dark: #140f2dff;
-    --middle: #f58a07ff;
 } 
 
 /* default formatting for mobile */
 
 body {
 		font-size: 18px;
-		background-color: var(--middle);
-		color: #fff;
+		color: var(--dark);
 }
 
 header {
@@ -47,7 +45,14 @@ h3 {
 }
 
 p {
-    margin: 1em;
+    margin: 0.5em;
+}
+
+ol {
+    padding: 1em;
+    width: 90%;
+    line-height: 1.2em;
+    text-align: start;
 }
 
 main {
@@ -70,6 +75,14 @@ form > input {
     text-align: center;
     border: 3px solid var(--secondary);
     background: var(--light);
+}
+
+form > input::placeholder {
+    color: #333;
+}
+
+form > input:focus::placeholder {
+    color: transparent;
 }
 
 form > button {
@@ -174,7 +187,7 @@ main > div {
 .subtract::before {
     content: "-5 ";
     position: absolute;
-    left: -1.25em;
+    right: -1em;
     color: red;;
     animation-name: redFlash;
     animation-fill-mode: forwards;
