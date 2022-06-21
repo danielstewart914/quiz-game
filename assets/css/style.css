@@ -37,6 +37,9 @@ h2 {
     font-weight: 650;
     font-size: 1.5em;
     padding: 0.5em;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 }
 
 h3 {
@@ -247,7 +250,7 @@ main > div {
     100% {font-size: 1em; opacity: 0;}
 }
 
-.answer {
+.answer, .snippet {
     width: 80vw;
 }
 
@@ -276,7 +279,7 @@ main > div {
         font-size: 1.5em;
     }
 
-    .answer {
+    .answer, .snippet {
         min-width: 200px;
     }
 }
@@ -309,7 +312,7 @@ main > div {
         margin: auto;
     }
 
-    .answer {
+    .answer, .snippet {
         width: 60vw;
     }
 }
@@ -321,7 +324,7 @@ main > div {
         font-size: 1.5rem;
     }
 
-    .answer {
+    .answer, .snippet {
         width: 40vw;
     }
 }
