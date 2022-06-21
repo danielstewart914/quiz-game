@@ -2,7 +2,9 @@
     --primary: #48b8d0ff;
     --secondary: #cc0003ff;
     --light: #fbe40eff;
+    --secondary-light: #98cc3eff;
     --dark: #140f2dff;
+    --shadow: #333;
 } 
 
 /* default formatting for mobile */
@@ -83,7 +85,7 @@ form > input {
 }
 
 form > input::placeholder {
-    color: #333;
+    color: var(--shadow);
 }
 
 form > input:focus::placeholder {
@@ -104,6 +106,12 @@ form > button {
 	border: 3px solid var(--secondary);
     border-radius: 0.25em;
     cursor: pointer;
+    box-shadow: 2px 2px 8px var(--shadow);
+}
+
+.button:hover, .button:focus {
+    background-color: var(--secondary-light);
+    color: var(--dark);
 }
 
 header > .button {
