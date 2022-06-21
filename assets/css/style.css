@@ -109,7 +109,7 @@ form > button {
     box-shadow: 2px 2px 8px var(--shadow);
 }
 
-.button:hover, .button:focus {
+.button:hover {
     background-color: var(--secondary-light);
     color: var(--dark);
 }
