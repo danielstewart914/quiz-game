@@ -153,8 +153,9 @@ main > div {
 /* formatting for code snippets in questions */
 .snippet {
     font-weight: 500;
-    font-size: 0.8em;
-    padding: 0.25em;
+    font-size: 0.7em;
+    text-align: left;
+    padding: 0 0.5em;
     background: #1e1e1e;
     color: #fff;
 }
@@ -181,6 +182,10 @@ main > div {
 
 .snippet > .purple {
     color: #bc3fbc;
+}
+
+.snippet > .green {
+    color: #487e02;
 }
 
 .snippet > .pale-green {
