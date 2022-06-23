@@ -109,7 +109,7 @@ form > button {
     box-shadow: 2px 2px 8px var(--shadow);
 }
 
-.button:hover {
+.button:focus {
     background-color: var(--secondary-light);
     color: var(--dark);
 }
@@ -278,6 +278,15 @@ main > div {
     font-weight: 700;
     height: 2rem;
     flex-wrap: nowrap;
+}
+
+@media ( hover ) {
+
+    .button:hover {
+        background-color: var(--secondary-light);
+        color: var(--dark);
+    }
+
 }
 
 /* very small screens */
