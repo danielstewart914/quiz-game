@@ -343,6 +343,10 @@ main > div {
         font-size: 1.5rem;
     }
 
+    h1.hide {
+        display: block;
+    }
+
     .answer, .snippet {
         width: 40vw;
     }
