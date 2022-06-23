@@ -198,9 +198,15 @@ function checkIfHighScore () {
             
         }
 
-    } else {
+    } else if ( score )  {
 
         return true;
+
+    }
+
+    else {
+
+        return false;
 
     }
 
