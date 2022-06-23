@@ -37,8 +37,8 @@ var questions = [
 
 {
     question: 'Which symbol is used separate JavaScript statements?',
-    answers: [ 'Comma \,', 'Colon \:', 'Hyphen \-', 'Semicolon \;' ],
-    correctAnswer: 'Semicolon \;'
+    answers: [ '\, ( Comma )', '\: ( Colon )', '\- ( Hyphen )', '\; ( Semicolon )' ],
+    correctAnswer: '\; ( Semicolon )'
 },
 
 {
@@ -60,7 +60,7 @@ var questions = [
 },
 {
     question: 'Which of the following represent falsy values in javascript?',
-    answers: [ 'false', '\'\'', 'undefined', 'All of the above' ],
+    answers: [ 'false', '\"\"', 'undefined', 'All of the above' ],
     correctAnswer: 'All of the above'
 },
 {
@@ -103,9 +103,50 @@ var questions = [
     correctAnswer: '\'string\''
 },
 {
-    question: 'Which of the following array methods removes the first element and returns that element?',
+    question: 'Which of the following array methods removes the first element of the array and returns that element?',
     answers: [ 'reverse()', 'shift()', 'slice()', 'some()' ],
     correctAnswer: 'shift()'
+},
+{
+    question: `What will the output of the following code be?
+            <div class="snippet">
+                <span class="light-blue">console</span>.<span class="pale-yellow">log</span><span class="yellow">(</span>
+                <span class="blue">typeof</span>
+                <span class="purple">(</span>
+                <span class="pale-green">6</span>
+                /
+                <span class="orange">'3'</span>
+                <span class="purple">)</span>
+                <span class="yellow">)</span>;
+            </div>`,
+    answers: [ '\'string\'', '\'number\'', '\.integer\'', 'None of the above' ],
+    correctAnswer: '\'number\''
+},
+{
+    question: `What will the output of the following code be?
+            <div class="snippet">
+                <span class="blue">let</span>
+                <span class="light-blue">stringVar</span>
+                =
+                <span class="orange">'Hello World!'</span>;<br />
+                <span class="light-blue">console</span>.<span class="pale-yellow">log</span><span class="yellow">(</span>
+                <span class="light-blue">stringVar</span>.<span class="pale-yellow">charAt</span><span class="purple">(</span>
+                <span class="pale-green">5</span>
+                <span class="purple">)</span>
+                <span class="yellow">)</span>;
+            </div>`,
+    answers: [ 'l', 'W', 'o', 'H' ],
+    correctAnswer: 'o'
+},
+{
+    question: 'Which of the following represents loops in javascript?',
+    answers: [ 'for', 'while', 'forEach', 'All of the above' ],
+    correctAnswer: 'All of the above'
+},
+{
+    question: 'An object is an unordered collection of _______.',
+    answers: [ 'values', 'names', 'Properties', 'All of the above' ],
+    correctAnswer: 'Properties'
 }
 
 ];

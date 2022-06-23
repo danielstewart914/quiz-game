@@ -8,7 +8,7 @@ var welcomeScreenEl = document.querySelector( '#welcome-screen' );
 // game questions will be displayed here
 var questionBoxEl = document.querySelector( '#question-box' );
 
-//end screen will be displayed here
+// end screen will be displayed here
 var endScreenEl = document.querySelector( '#end-screen' );
 
 // correct/wrong will be displayed here
@@ -29,6 +29,7 @@ var timerEl = document.querySelector( '#timer' );
 // high score submission button
 var submitHighScoreButton = document.querySelector( '#submit-high-score' );
 
+
 // other global variables
 var highScores = JSON.parse( localStorage.getItem( 'highScores' ) );
 var questionPointer;
@@ -38,21 +39,7 @@ var countdown;
 var score = 0;
 
 const oneSecond = 1000;
-    
-// var testHighScores = [ 
-//     { initials: "DBG", score: 45 }, 
-//     { initials: "MVP", score: 37 }, 
-//     { initials: "LAS", score: 33 },
-//     { initials: "AKG", score: 30 },
-//     { initials: "CSG", score: 28 },
-//     { initials: "MVP", score: 27 },
-//     { initials: "DBG", score: 24 },
-//     { initials: "DBG", score: 20 },
-//     { initials: "MDS", score: 18 },
-//     { initials: "ADS", score: 10 }
-// ];
 
-// highScores = testHighScores;
 
 // shuffles the elements in an array using Fisher–Yates Shuffle
 // I used the algorithm at the bottom of this article https://bost.ocks.org/mike/shuffle/
@@ -175,16 +162,16 @@ function checkAnswer ( event ) {
     } else {
 
         responseBoxEl.innerHTML = '<span class="wrong">Wrong!</span>';
-        countdown -= 5;
+        countdown -= 5;          
+
+        timerEl.innerHTML = `<span class="subtract">${ countdown }</span>`;
 
         // if decrementing count results in negative number set to 0
         if ( countdown < 0 ) {
 
             countdown = 0;
 
-        }            
-
-        timerEl.innerHTML = `<span class="subtract">${ countdown }</span>`;
+        }  
 
     }
 
@@ -337,7 +324,7 @@ gameBoxEl.addEventListener( 'click', function ( event ) {
 
     }
 
-    // if you an answer button is clicked check against the correct answer
+    // if an answer button is clicked check against the correct answer
     if (  event.target.classList.contains( 'answer' ) ) {
 
         checkAnswer( event );
@@ -366,6 +353,7 @@ gameBoxEl.addEventListener( 'click', function ( event ) {
 
     } 
 
+    // if back button is clicked reload page
     if ( event.target.classList.contains( 'back' ) ) {
 
         location.reload();
