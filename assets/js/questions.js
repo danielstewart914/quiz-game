@@ -74,7 +74,7 @@ var questions = [
                 <span class="light-blue">data</span>
                 <span class="yellow">[]</span>;
                 </div>`,
-    answers: [ 'array', 'object', 'string', 'None of the above' ],
+    answers: [ 'array', 'object', 'data', 'None of the above' ],
     correctAnswer: 'array'
 },
 {

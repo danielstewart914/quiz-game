@@ -1,5 +1,7 @@
 // variables for DOM elements
 // main content
+var titleEl = document.querySelector( '#title' );
+
 var gameBoxEl = document.querySelector( '#game-container' );
 
 // Welcome screen
@@ -102,6 +104,7 @@ function startTimer () {
 function startGame () {
 
     // hide everything except the question box
+    titleEl.classList.add( 'hide' );
     welcomeScreenEl.classList.add( 'hide' );
     endScreenEl.classList.add( 'hide' );
     highScoreFormEl.classList.add( 'hide' );
@@ -134,13 +137,18 @@ function startGame () {
 // prints new question on screen
 function printQuestion () {
 
+    // display updated score
+     scoreEl.innerHTML = 'Score: ' + score;
+
     // display question in h2 header and create 4 buttons from the current question object
     questionBoxEl.innerHTML =  `
-        <h2>${currentQuestion.question}</h2>
-        <button data-answer="${currentQuestion.answers[0]}" class="answer button">${currentQuestion.answers[0]}</button>
-        <button data-answer="${currentQuestion.answers[1]}" class="answer button">${currentQuestion.answers[1]}</button>
-        <button data-answer="${currentQuestion.answers[2]}" class="answer button">${currentQuestion.answers[2]}</button>
-        <button data-answer="${currentQuestion.answers[3]}" class="answer button">${currentQuestion.answers[3]}</button>
+
+        <h4> Question: ${ questionPointer + 1 } of ${ questions.length }</h4>
+        <h2>${ currentQuestion.question }</h2>
+        <button data-answer="${ currentQuestion.answers[0] }" class="answer button">${ currentQuestion.answers[0] }</button>
+        <button data-answer="${ currentQuestion.answers[1] }" class="answer button">${ currentQuestion.answers[1] }</button>
+        <button data-answer="${ currentQuestion.answers[2] }" class="answer button">${ currentQuestion.answers[2] }</button>
+        <button data-answer="${ currentQuestion.answers[3] }" class="answer button">${ currentQuestion.answers[3] }</button>
     `;
 }
 
@@ -174,9 +182,6 @@ function checkAnswer ( event ) {
         }  
 
     }
-
-    // display updated score
-    scoreEl.innerHTML = 'Score: ' + score;
 
 }
 
@@ -229,6 +234,7 @@ function displayEndScreen () {
 
             // reveal end screen
             endScreenEl.classList.remove( 'hide' );
+            titleEl.classList.remove( 'hide' );
 
             // if current score is a high score display high score entry
             if ( checkIfHighScore() ) {

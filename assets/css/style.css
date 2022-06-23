@@ -16,16 +16,14 @@ body {
 
 header {
     background-color: var(--primary);
-    padding: 1em;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    min-height: 8em;
 }
 
 h1 {
-    margin: auto;
+    margin: 0.5em;
     color: var(--dark);
     text-align: center;
     font-size: 2em;
@@ -35,13 +33,12 @@ h1 {
 
 h2 {
     text-align: center;
-    line-height: 1.5em;
     font-weight: 650;
-    font-size: 1.5em;
+    font-size: 1.75rem;
     padding: 0.5em;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 h3 {
@@ -49,6 +46,16 @@ h3 {
     line-height: 1.5em;
     margin: 0.5em;
     font-weight: 600;
+}
+
+h4 {
+    display: inline;
+    text-align: right;
+    font-size: 1rem;
+    padding: 1em;
+    font-weight: 600;
+    width: 100%;
+    color: var(--shadow);
 }
 
 p {
@@ -152,7 +159,9 @@ main > div {
 
 /* formatting for code snippets in questions */
 .snippet {
+    margin-top: 0.25em;
     font-weight: 500;
+    line-height: 2em;
     font-size: 0.7em;
     text-align: left;
     padding: 0 0.5em;
@@ -274,10 +283,10 @@ main > div {
 }
 
 #score-box {
+    padding: 0.5em 0;
     font-size: 1.5em;
     font-weight: 700;
-    height: 2rem;
-    flex-wrap: nowrap;
+    height: 4.5rem;
 }
 
 @media ( hover ) {
@@ -287,24 +296,6 @@ main > div {
         color: var(--dark);
     }
 
-}
-
-/* very small screens */
-
-@media screen and (max-width: 310px) {
-    
-    header {
-        flex-direction: column;
-    }
-
-    h1 {
-        margin: 0;
-        font-size: 1.5em;
-    }
-
-    .answer, .snippet {
-        min-width: 200px;
-    }
 }
 
 /* small screens and laptops */
@@ -332,7 +323,7 @@ main > div {
 
     h1 {
         order: 0;
-        margin: auto;
+        margin: 1.5em auto;
     }
 
     .answer, .snippet {
