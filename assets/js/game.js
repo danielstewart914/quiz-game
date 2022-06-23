@@ -39,7 +39,7 @@ var countdown;
 var score = 0;
 
 const oneSecond = 1000;
-
+const fiftyMilliseconds = 50;
 
 // shuffles the elements in an array using Fisher–Yates Shuffle
 // I used the algorithm at the bottom of this article https://bost.ocks.org/mike/shuffle/
@@ -74,21 +74,21 @@ function startTimer () {
         countdown--;
 
         // if countdown is 10 or below start pulsing the timer
-        if ( countdown <= 10 ) {
+        if ( countdown === 10 ) {
 
-            timerEl.innerHTML = `<span class="low">${ countdown }</span>`;
-
-        } else {
-
-            timerEl.innerHTML = countdown;
+            timerEl.classList.add( 'low' );
 
         }
+
+        timerEl.innerHTML = countdown;
 
         // if timer runs out clear question box amd print end screen
         if ( countdown <= 0 ) {
             clearInterval( timerInterval );
 
             countdown = 0;
+
+            timerEl.classList.remove( 'low' );
 
             questionBoxEl.classList.add( 'hide' );
 
@@ -142,9 +142,6 @@ function printQuestion () {
         <button data-answer="${currentQuestion.answers[2]}" class="answer button">${currentQuestion.answers[2]}</button>
         <button data-answer="${currentQuestion.answers[3]}" class="answer button">${currentQuestion.answers[3]}</button>
     `;
-
-    // display updated score
-    scoreEl.innerHTML = 'Score: ' + score;
 }
 
 // checks if clicked answer is the correct answer
@@ -155,16 +152,19 @@ function checkAnswer ( event ) {
     // if clicked answer is correct
     if ( clickedAnswer === currentQuestion.correctAnswer ) {
 
-        responseBoxEl.innerHTML = '<span class="correct">Correct!</span>';
+        responseBoxEl.textContent = 'Correct!';
+        responseBoxEl.classList.add( 'correct' );
         score++;
 
     // answer is wrong 
     } else {
 
-        responseBoxEl.innerHTML = '<span class="wrong">Wrong!</span>';
+        responseBoxEl.textContent = 'Wrong!';
+        responseBoxEl.classList.add( 'wrong' );
         countdown -= 5;          
 
-        timerEl.innerHTML = `<span class="subtract">${ countdown }</span>`;
+        timerEl.classList.add( 'subtract' );
+        timerEl.textContent = countdown;
 
         // if decrementing count results in negative number set to 0
         if ( countdown < 0 ) {
@@ -175,14 +175,20 @@ function checkAnswer ( event ) {
 
     }
 
+    // display updated score
+    scoreEl.innerHTML = 'Score: ' + score;
+
 }
 
 // check if current score is a high score
 function checkIfHighScore () {
 
+    // if there are no high scores stored
     if ( highScores ) {
 
-        if (  highScores.length < 10 || highScores.length === 10 && score > highScores[9].score ) {
+        // there less than 10 high scores AND score is not 0 
+        // OR there are 10 high scores AND score is greater than the lowest score in high scores
+        if (  highScores.length < 10 && score || highScores.length === 10 && score > highScores[9].score ) {
         
             return true;
     
@@ -204,8 +210,8 @@ function checkIfHighScore () {
 function displayEndScreen () {
     
     // pulse timer and score
-    timerEl.innerHTML = `<span class="pulse">${ countdown }</span>`;
-    scoreEl.innerHTML = `<span class="pulse">Score: ${ score }</span>`;
+    timerEl.classList.add( 'pulse' );
+    scoreEl.classList.add( 'pulse' );
 
     // transfer remaining time to score
     var addTimerToScore = setInterval( function () {
@@ -228,7 +234,7 @@ function displayEndScreen () {
 
                 highScoreSubmissionEl.classList.remove( 'hide' );
                 highScoreSubmissionEl.innerHTML = `
-                    <h3>Your score did not make it into the Top 10</h3>
+                    <h3>Sorry your score did not make it into the Top 10</h3>
                     Please try again.
                 `;
 
@@ -240,12 +246,12 @@ function displayEndScreen () {
             countdown--;
             score++;
 
-            timerEl.children[0].textContent = countdown;
-            scoreEl.children[0].textContent = 'Score: ' + score;
+            timerEl.textContent = countdown;
+            scoreEl.textContent = 'Score: ' + score;
 
         }
 
-    }, 50 );
+    }, fiftyMilliseconds );
 }
 
 
@@ -258,7 +264,7 @@ function saveHighScore ( event ) {
     //get initials from form
     var enteredInitials = document.querySelector( '#initials' ).value;
 
-    // if no initials are entered make initials 'MVP'
+    // if no initials are entered set initials to 'MVP'
     if ( !enteredInitials ) {
 
         enteredInitials = 'MVP';
@@ -363,3 +369,28 @@ gameBoxEl.addEventListener( 'click', function ( event ) {
 
 // listen for high score button click
 submitHighScoreButton.addEventListener( 'click', saveHighScore );
+
+// remove animation classes when animation ends
+responseBoxEl.addEventListener( 'animationend', function () {
+
+    responseBoxEl.classList.remove( 'wrong' );
+    responseBoxEl.classList.remove( 'correct' );
+    responseBoxEl.textContent = '';
+
+} );
+
+// remove animation classes when animation ends
+timerEl.addEventListener( 'animationend', function ( event ) {
+
+    if ( event.animationName === 'redFlash' ) {
+
+        timerEl.classList.remove( 'subtract' );
+
+    }
+
+    if ( event.animationName === 'pulse' ) {
+        timerEl.classList.remove( 'pulse' );
+        scoreEl.classList.remove( 'pulse' );
+    }
+
+} );

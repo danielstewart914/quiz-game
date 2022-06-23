@@ -212,7 +212,7 @@ main > div {
 .correct, .wrong {
     font-weight: 800;
     animation-name: pulseFade;
-    animation-duration: 1.5s;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
 }
 
@@ -220,6 +220,7 @@ main > div {
     font-weight: 700;
     animation-name: pulseFade;
     animation-duration: 1s;
+    animation-iteration-count: 10;
 }
 
 @keyframes pulseFade {
@@ -233,7 +234,7 @@ main > div {
     font-weight: 800;
     animation-name: pulse;
     animation-duration: 1s;
-    animation-iteration-count: 3;
+    animation-iteration-count: 4;
 }
 
 @keyframes pulse {
