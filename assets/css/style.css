@@ -2,9 +2,10 @@
     --primary: #48b8d0ff;
     --secondary: #cc0003ff;
     --light: #fbe40eff;
-    --secondary-light: #98cc3eff;
+    --secondary-light: #fff;
     --dark: #140f2dff;
-    --shadow: #333;
+    --shadowColor: #333;
+    --shadow: 2px 2px 4px var(--shadowColor);
 } 
 
 /* default formatting for mobile */
@@ -15,7 +16,6 @@ body {
 }
 
 header {
-    background-color: var(--primary);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,10 +24,12 @@ header {
 
 h1 {
     margin: 0.5em;
-    color: var(--dark);
+    color: var(--secondary);
     text-align: center;
     font-size: 2em;
     font-weight: 700;
+    -webkit-text-stroke: 1px #000;
+    text-shadow: var(--shadow);
     order: -1;
 }
 
@@ -55,7 +57,7 @@ h4 {
     padding: 1em;
     font-weight: 600;
     width: 100%;
-    color: var(--shadow);
+    color: var(--shadowColor);
 }
 
 p {
@@ -89,11 +91,11 @@ form > input {
     text-align: center;
     border: 3px solid var(--secondary);
     background: var(--light);
-    box-shadow: 2px 2px 8px var(--shadow);
+    box-shadow: var(--shadow);
 }
 
 form > input::placeholder {
-    color: var(--shadow);
+    color: var(--shadowColor);
 }
 
 form > input:focus::placeholder {
@@ -116,7 +118,8 @@ form > .button {
 	border: 3px solid var(--secondary);
     border-radius: 0.25em;
     cursor: pointer;
-    box-shadow: 2px 2px 8px var(--shadow);
+    box-shadow: var(--shadow);
+    outline: none;
 }
 
 .button:focus {
