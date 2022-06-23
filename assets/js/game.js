@@ -172,7 +172,6 @@ function checkAnswer ( event ) {
         countdown -= 5;          
 
         timerEl.classList.add( 'subtract' );
-        timerEl.textContent = countdown;
 
         // if decrementing count results in negative number set to 0
         if ( countdown < 0 ) {
@@ -180,6 +179,8 @@ function checkAnswer ( event ) {
             countdown = 0;
 
         }  
+
+        timerEl.textContent = countdown;
 
     }
 
@@ -224,6 +225,8 @@ function displayEndScreen () {
     timerEl.classList.add( 'pulse' );
     scoreEl.classList.add( 'pulse' );
 
+    timerEl.textContent = countdown;
+
     // transfer remaining time to score
     var addTimerToScore = setInterval( function () {
 
@@ -234,7 +237,6 @@ function displayEndScreen () {
 
             // reveal end screen
             endScreenEl.classList.remove( 'hide' );
-            titleEl.classList.remove( 'hide' );
 
             // if current score is a high score display high score entry
             if ( checkIfHighScore() ) {
