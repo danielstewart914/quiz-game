@@ -84,11 +84,12 @@ form > label {
 }
 
 form > input {
-    max-width: 3em;
-    height: 2em;
+    max-width: 6em;
+    height: 3rem;
     text-align: center;
     border: 3px solid var(--secondary);
     background: var(--light);
+    box-shadow: 2px 2px 8px var(--shadow);
 }
 
 form > input::placeholder {
@@ -99,8 +100,10 @@ form > input:focus::placeholder {
     color: transparent;
 }
 
-form > button {
+form > .button {
+    height: 3rem;
     font-size: 0.8em;
+    margin: 0;
 }
 
 .button {
@@ -260,7 +263,7 @@ main > div {
 .subtract::before {
     content: "-5 ";
     position: absolute;
-    right: -1em;
+    right: -0.5rem;
     color: red;;
     animation-name: redFlash;
     animation-fill-mode: forwards;
@@ -309,8 +312,7 @@ main > div {
     }
 
     .subtract::before {
-        left: 0;
-        right: -2.5em;
+        right: -1rem;
     }
 
     header {
@@ -340,5 +342,9 @@ main > div {
 
     .answer, .snippet {
         width: 40vw;
+    }
+
+    .subtract::before {
+        right: -1.75rem;
     }
 }
