@@ -238,6 +238,8 @@ function displayEndScreen () {
             // reveal end screen
             endScreenEl.classList.remove( 'hide' );
 
+            scoreEl.textContent = 'Final Score: ' + score;
+
             // if current score is a high score display high score entry
             if ( checkIfHighScore() ) {
 
