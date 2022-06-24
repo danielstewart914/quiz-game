@@ -82,7 +82,7 @@ function startTimer () {
 
         }
 
-        timerEl.innerHTML = countdown;
+        timerEl.textContent = countdown;
 
         // if timer runs out clear question box amd print end screen
         if ( countdown <= 0 ) {
@@ -123,7 +123,7 @@ function startGame () {
     currentQuestion = questions[questionPointer];
 
     // set countdown and timer to initial values
-    countdown = 60;
+    countdown = 90;
     score = 0;
 
     // print first question
@@ -137,8 +137,14 @@ function startGame () {
 // prints new question on screen
 function printQuestion () {
 
+    if ( currentQuestion.canShuffle ) {
+
+        shuffleArray( currentQuestion.answers );
+
+    }
+
     // display updated score
-     scoreEl.innerHTML = 'Score: ' + score;
+     scoreEl.textContent = 'Score: ' + score;
 
     // display question in h2 header and create 4 buttons from the current question object
     questionBoxEl.innerHTML =  `
