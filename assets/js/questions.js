@@ -127,7 +127,7 @@ var questions = [
                 <span class="purple">)</span>
                 <span class="yellow">)</span>;
             </div>`,
-    answers: [ '\'string\'', '\'number\'', '\.integer\'', 'undefined' ],
+    answers: [ '\'string\'', '\'number\'', '\'integer\'', 'undefined' ],
     correctAnswer: '\'number\'',
     canShuffle: true
 },

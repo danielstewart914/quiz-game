@@ -137,8 +137,10 @@ function startGame () {
 // prints new question on screen
 function printQuestion () {
 
+    // if current questions answers can be shuffled
     if ( currentQuestion.canShuffle ) {
 
+        // shuffle answers order
         shuffleArray( currentQuestion.answers );
 
     }
@@ -275,7 +277,6 @@ function displayEndScreen () {
 
     }, fiftyMilliseconds );
 }
-
 
 // saves high score to local storage
 function saveHighScore ( event ) {
