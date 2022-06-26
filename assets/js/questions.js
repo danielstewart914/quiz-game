@@ -45,7 +45,7 @@ var questions = [
     question: 'Which JavaScript keyword is used to declare a variable?',
     answers: [ 'Var', 'var', 'Let', 'All of the above' ],
     correctAnswer: 'var',
-    canShuffle: true
+    canShuffle: false
 },
 {
     question: 'How many keywords are there in JavaScript to declare variables or constants?',
