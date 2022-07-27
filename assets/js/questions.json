@@ -85,7 +85,7 @@
         "All of the above"
       ],
       "correctAnswer": "var",
-      "canShuffle": true
+      "canShuffle": false
     },
     {
       "question": "How many keywords are there in JavaScript to declare variables or constants?",
