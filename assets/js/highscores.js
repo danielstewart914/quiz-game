@@ -1,39 +1,25 @@
-var highScoresListEl = document.querySelector( '#high-scores' );
-var highScoresMainEl = document.querySelector( '#high-scores-main' );
-var clearButton = document.querySelector( '#clear' );
-var highScores;
+const highScoresListEl = document.querySelector( '#high-scores' );
+const highScoresMainEl = document.querySelector( '#high-scores-main' );
+const clearButton = document.querySelector( '#clear' );
+const highScores = JSON.parse( localStorage.getItem( 'highScores' ) ) || [];
 
-function displayHighScores () {
+const displayHighScores = () => {
+    
+    for ( const highScore of highScores ) {
 
-    highScores = JSON.parse( localStorage.getItem( 'highScores' ) );
-
-    if ( highScores ) {
-    
-    console.log ( highScores )
-    
-        for ( var i = 0; i < highScores.length; i++ ) {
-    
-            var listItemEl = document.createElement( 'li' );
-    
-            listItemEl.textContent = `${ highScores[i].initials } - ${ highScores[i].score }`;
-    
-            highScoresListEl.appendChild( listItemEl );
-        }
-    
-    } else {
-    
-        highScoresMainEl.innerHTML = "<h2>No High Scores Saved</h2>";
-    
+        const listItemEl = document.createElement( 'li' );
+        listItemEl.textContent = `${ highScore.initials } - ${ highScore.score }`;
+        highScoresListEl.appendChild( listItemEl );
     }
-
 }
 
-clearButton.addEventListener( 'click', function () {
+clearButton.addEventListener( 'click', () => {
 
     localStorage.removeItem( 'highScores' );
 
-    displayHighScores();
+    location.reload();
     
 } );
 
-displayHighScores();
+// if there are high scores render them to screen
+highScores.length ? displayHighScores() : highScoresMainEl.innerHTML = "<h2>No High Scores Saved</h2>";

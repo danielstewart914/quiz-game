@@ -1,55 +1,61 @@
+const questions = [];
+
+fetch( './assets/js/questions.json' )
+.then( response => response.json() )
+.then( questionsJSON => { for  ( const question of questionsJSON ) questions.push( question ) } );
+
 // variables for DOM elements
 // main content
-var titleEl = document.querySelector( '#title' );
+const titleEl = document.querySelector( '#title' );
 
-var gameBoxEl = document.querySelector( '#game-container' );
+const gameBoxEl = document.querySelector( '#game-container' );
 
 // Welcome screen
-var welcomeScreenEl = document.querySelector( '#welcome-screen' );
+const welcomeScreenEl = document.querySelector( '#welcome-screen' );
 
 // game questions will be displayed here
-var questionBoxEl = document.querySelector( '#question-box' );
+const questionBoxEl = document.querySelector( '#question-box' );
 
 // end screen will be displayed here
-var endScreenEl = document.querySelector( '#end-screen' );
+const endScreenEl = document.querySelector( '#end-screen' );
 
 // correct/wrong will be displayed here
-var responseBoxEl = document.querySelector( '#response-box' );
+const responseBoxEl = document.querySelector( '#response-box' );
 
 // High Score submission thank you will be displayed here
-var highScoreSubmissionEl = document.querySelector( '#high-score-submission' );
+const highScoreSubmissionEl = document.querySelector( '#high-score-submission' );
 
 // high score submission form
-var highScoreFormEl = document.querySelector( '#high-score-form' );
+const highScoreFormEl = document.querySelector( '#high-score-form' );
 
 // score will be displayed here
-var scoreEl = document.querySelector( '#score-box' ); 
+const scoreEl = document.querySelector( '#score-box' ); 
 
 // timer will be displayed here
-var timerEl = document.querySelector( '#timer' );
+const timerEl = document.querySelector( '#timer' );
 
 // high score submission button
-var submitHighScoreButton = document.querySelector( '#submit-high-score' );
+const submitHighScoreButton = document.querySelector( '#submit-high-score' );
 
 
 // other global variables
-var highScores = JSON.parse( localStorage.getItem( 'highScores' ) );
-var questionPointer;
-var currentQuestion;
-var timerInterval;
-var countdown;
-var score = 0;
+const highScores = JSON.parse( localStorage.getItem( 'highScores' ) ) || [];
+let questionPointer;
+let currentQuestion;
+let timerInterval;
+let countdown;
+let score = 0;
 
 const oneSecond = 1000;
 const fiftyMilliseconds = 50;
 
 // shuffles the elements in an array using Fisher–Yates Shuffle
 // I used the algorithm at the bottom of this article https://bost.ocks.org/mike/shuffle/
-function shuffleArray( array ) {
+const shuffleArray = ( array ) => {
 
-    var length = array.length;
-    var element1;
-    var element2;
+    let length = array.length;
+    let element1;
+    let element2;
 
     // while there are elements left
     while ( length ) {
@@ -69,9 +75,9 @@ function shuffleArray( array ) {
 }
 
 // starts game timer
-function startTimer () {
+const startTimer = () => {
     
-    timerInterval = setInterval( function () {
+    timerInterval = setInterval( () => {
 
         countdown--;
 
@@ -101,7 +107,7 @@ function startTimer () {
 }
 
 // starts game running
-function startGame () {
+const startGame = () => {
 
     // hide everything except the question box
     titleEl.classList.add( 'hide' );
@@ -135,7 +141,7 @@ function startGame () {
 }
 
 // prints new question on screen
-function printQuestion () {
+const printQuestion = () => {
 
     // if current questions answers can be shuffled
     if ( currentQuestion.canShuffle ) {
@@ -161,9 +167,9 @@ function printQuestion () {
 }
 
 // checks if clicked answer is the correct answer
-function checkAnswer ( event ) {
+const checkAnswer = ( event ) => {
 
-    var clickedAnswer = event.target.dataset.answer;
+    const clickedAnswer = event.target.dataset.answer;
 
     // if clicked answer is correct
     if ( clickedAnswer === currentQuestion.correctAnswer ) {
@@ -195,39 +201,22 @@ function checkAnswer ( event ) {
 }
 
 // check if current score is a high score
-function checkIfHighScore () {
+const checkIfHighScore = () => {
 
-    // if there are no high scores stored
-    if ( highScores ) {
-
-        // there less than 10 high scores AND score is not 0 
-        // OR there are 10 high scores AND score is greater than the lowest score in high scores
-        if (  highScores.length < 10 && score || highScores.length === 10 && score > highScores[9].score ) {
-        
-            return true;
+    // if there are 10 high scores AND score is greater than the lowest score in high scores
+    if (  highScores.length < 10 && score || highScores.length === 10 && score > highScores[9].score ) {
     
-        } else {
-
-            return false;
-            
-        }
-
-    } else if ( score )  {
-
         return true;
 
-    }
-
-    else {
+    } else {
 
         return false;
-
+        
     }
-
 }
 
 // displays end screen and high score submission form
-function displayEndScreen () {
+const displayEndScreen = () => {
     
     // pulse timer and score
     timerEl.classList.add( 'pulse' );
@@ -236,7 +225,7 @@ function displayEndScreen () {
     timerEl.textContent = countdown;
 
     // transfer remaining time to score
-    var addTimerToScore = setInterval( function () {
+    const addTimerToScore = setInterval( () => {
 
         // if countdown has finished being added to score
         if ( countdown <= 0 ) {
@@ -279,13 +268,13 @@ function displayEndScreen () {
 }
 
 // saves high score to local storage
-function saveHighScore ( event ) {
+const saveHighScore = ( event ) => {
 
     event.preventDefault();
     event.stopPropagation();
 
     //get initials from form
-    var enteredInitials = document.querySelector( '#initials' ).value;
+    let enteredInitials = document.querySelector( '#initials' ).value;
 
     // if no initials are entered set initials to 'MVP'
     if ( !enteredInitials ) {
@@ -294,27 +283,18 @@ function saveHighScore ( event ) {
     }
 
     // create new high score object
-    var thisHighScore = {
+    const thisHighScore = {
 
         initials: enteredInitials.toUpperCase(),
         score: score
 
     };
 
-    // if no high scores are saved start new array with high score object as first item
-    // otherwise push new high score to the end of the array
-    if ( !highScores ) {
-
-        highScores = [ thisHighScore ];
-
-    } else {
-
-        highScores.push( thisHighScore );
-
-    }
+    //  push new high score to the end of the array
+    highScores.push( thisHighScore );
 
     // sort high score array by score before saving to local storage
-    highScores.sort( function ( a, b ) {
+    highScores.sort( ( a, b ) => {
 
         return b.score - a.score;
 
@@ -328,7 +308,7 @@ function saveHighScore ( event ) {
     }
 
     // save high scores to localStorage 
-     localStorage.setItem( 'highScores', JSON.stringify( highScores ) );
+    localStorage.setItem( 'highScores', JSON.stringify( highScores ) );
 
     // display thank you and high score submission
     highScoreSubmissionEl.classList.remove( 'hide' );
@@ -344,7 +324,7 @@ function saveHighScore ( event ) {
 }
 
 // listen for click events in main content box
-gameBoxEl.addEventListener( 'click', function ( event ) {
+gameBoxEl.addEventListener( 'click', ( event ) => {
 
     // if the start button is clicked start game
     if (  event.target.classList.contains( 'start' ) ) {
@@ -394,7 +374,7 @@ gameBoxEl.addEventListener( 'click', function ( event ) {
 submitHighScoreButton.addEventListener( 'click', saveHighScore );
 
 // remove animation classes when animation ends
-responseBoxEl.addEventListener( 'animationend', function () {
+responseBoxEl.addEventListener( 'animationend', () => {
 
     responseBoxEl.classList.remove( 'wrong' );
     responseBoxEl.classList.remove( 'correct' );
@@ -403,7 +383,7 @@ responseBoxEl.addEventListener( 'animationend', function () {
 } );
 
 // remove animation classes when animation ends
-timerEl.addEventListener( 'animationend', function ( event ) {
+timerEl.addEventListener( 'animationend', ( event ) => {
 
     if ( event.animationName === 'redFlash' ) {
 
