@@ -75,6 +75,7 @@ var questions = [
     question: `What type of variable is declared by the following?
                 <div class="snippet"><span class="blue">var </span>
                 <span class="light-blue">data</span>
+                =
                 <span class="yellow">[]</span>;
                 </div>`,
     answers: [ 'array', 'object', 'data', 'number' ],

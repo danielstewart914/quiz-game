@@ -132,7 +132,7 @@
       "canShuffle": false
     },
     {
-      "question": "What type of variable is declared by the following?\n<div class=\"snippet\"><span class=\"blue\">var </span>\n<span class=\"light-blue\">data</span>\n<span class=\"yellow\">[]</span>;\n</div>",
+      "question": "What type of variable is declared by the following?\n<div class=\"snippet\"><span class=\"blue\">var </span>\n<span class=\"light-blue\">data</span>\n=\n<span class=\"yellow\">[]</span>;\n</div>",
       "answers": [
         "array",
         "object",

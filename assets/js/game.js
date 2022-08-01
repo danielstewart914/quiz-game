@@ -1,8 +1,6 @@
-const questions = [];
+let questions = [];
 
-fetch( './assets/js/questions.json' )
-.then( response => response.json() )
-.then( questionsJSON => { for  ( const question of questionsJSON ) questions.push( question ) } );
+fetch( './assets/js/questions.json' ).then( response => response.json() ).then( responseJSON => questions = responseJSON );
 
 // variables for DOM elements
 // main content
